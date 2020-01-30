@@ -39,5 +39,8 @@ grants[grants$total_amount == max(grants$total_amount), "organization"]
 # Which organization received the smallest grant?
 grants[grants$total_amount == min(grants$total_amount), "organization"]
 
-# How many grants were awarded in 2010?
-nrow(grants)
+# How many grants were awarded in 2010 and are greater than $1,000,000?
+nrow(grants[grants$start_year == 2010 && grants$total_amount > 1000000,] )
+filter1 <- grants$total_amount > 1000000 
+filter2 <- grants$start_year == 2010
+filter3 <- filter1 && filter2
