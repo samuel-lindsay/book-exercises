@@ -1,6 +1,7 @@
 # load relevant libraries
 library("httr")
 library("jsonlite")
+library("dplyr")
 
 # Be sure and check the README.md for complete instructions!
 
@@ -51,6 +52,16 @@ reviews <- data$results
 # From the most recent review, store the headline, short summary, and link to
 # the full article, each in their own variables
 
+newest_review <- reviews %>% 
+  top_n(1, date_updated)
 
+headline <- newest_review$headline
+summary <- newest_review$summary_short
+link <- newest_review$link$url
+
+  
 # Create a list of the three pieces of information from above. 
 # Print out the list.
+
+review_data_list <- list("headline"=headline, "summary"=summary, "link"=link)
+print(review_data_list)
